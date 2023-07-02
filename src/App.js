@@ -4,7 +4,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical, faEye, faCalendar, faUser } from '@fortawesome/free-solid-svg-icons';
 import mockData from './MOCK_DATA.json';
 
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.substr(0, maxLength) + '...';
+}
+
 function App() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [checkAll, setCheckAll] = useState(false);
+  const [checkedCards, setCheckedCards] = useState([]);
+
+  const handleReadFullClick = (news) => {
+    setSelectedNews(news);
+    setShowModal(true);
+  };
+
+  const handleCheckAllChange = (e) => {
+    setCheckAll(e.target.checked);
+    setCheckedCards(e.target.checked ? mockData.map((news) => news.id) : []);
+  };
+
+  const handleCardCheckboxChange = (id) => {
+    if (checkedCards.includes(id)) {
+      setCheckedCards(checkedCards.filter((cardId) => cardId !== id));
+    } else {
+      setCheckedCards([...checkedCards, id]);
+    }
+  };
+
+  const handleDeleteClick = () => {
+    const filteredData = mockData.filter((news) => !checkedCards.includes(news.id));
+    mockData.length = 0;
+    Array.prototype.push.apply(mockData, filteredData);
+    setCheckedCards([]);
+    setCheckAll(false);
+  };
+  
   return (
     <div className="App">
       <div className="header">
@@ -13,10 +51,10 @@ function App() {
       <div className="actions">
         <div className="actions-left">
           <div className="checkbox-container">
-            <input type="checkbox" />
+            <input type="checkbox" checked={checkAll} onChange={handleCheckAllChange} />
           </div>
           <button className="publish">Publish</button>
-          <button className="delete">
+          <button className="delete" onClick={handleDeleteClick}>
             Delete
           </button>
         </div>
@@ -34,6 +72,8 @@ function App() {
                 </span>
                 <input
                   type="checkbox"
+                  checked={checkedCards.includes(news.id)}
+                  onChange={() => handleCardCheckboxChange(news.id)}
                 />
               </div>
             </div>
@@ -52,8 +92,8 @@ function App() {
                 </span>
               </div>
               <div className="bottom-section">
-                <p>{news.content}</p>
-                <button className="read-full-button">
+                <p>{truncateText(news.content, 100)}</p>
+                <button className="read-full-button" onClick={() => handleReadFullClick(news)}>
                   <FontAwesomeIcon icon={faEye} />
                   Read Full
                 </button>
