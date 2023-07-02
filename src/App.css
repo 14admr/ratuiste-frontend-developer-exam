@@ -47,3 +47,107 @@
   background-color: #dc3545;
   color: #fff;
 }
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: auto 2fr 1fr;
+  gap: 5px;
+}
+
+.left-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.drag-icon {
+  display: flex;
+  align-items: center;
+  cursor: move;
+  margin-right: 5px;
+}
+
+.middle-section {
+  display: grid;
+  gap: 5px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-section span {
+  margin: 5px;
+}
+
+.right-section span.tag {
+  background-color: #28a745;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.center-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.center-section span {
+  display: flex;
+  align-items: center;
+}
+
+.center-section span svg {
+  margin-right: 5px;
+}
+
+.center-section span.author {
+  margin-right: 10px;
+}
+
+.center-section span.author,
+.center-section span.date {
+  color: #333;
+  font-weight: bold;
+}
+
+.bottom-section {
+  display: flex;
+  align-items: center;
+}
+
+.card p {
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bottom-section svg {
+  margin-right: 5px;
+}
+
+.bottom-section button {
+  margin-left: 5px;
+}
+
+.read-full-button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
