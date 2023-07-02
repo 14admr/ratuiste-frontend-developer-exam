@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGripVertical, faEye, faCalendar, faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 import mockData from './MOCK_DATA.json';
 
+// Truncates text to a specified length with ellipsis
 function truncateText(text, maxLength) {
   if (text.length <= maxLength) {
     return text;
@@ -17,16 +18,19 @@ function App() {
   const [checkAll, setCheckAll] = useState(false);
   const [checkedCards, setCheckedCards] = useState([]);
 
+  // Handles the click event to display the full news content
   const handleReadFullClick = (news) => {
     setSelectedNews(news);
     setShowModal(true);
   };
 
+  // Handles the change event of the "Check All" checkbox
   const handleCheckAllChange = (e) => {
     setCheckAll(e.target.checked);
     setCheckedCards(e.target.checked ? mockData.map((news) => news.id) : []);
   };
 
+  // Handles the checkbox change event for individual news cards
   const handleCardCheckboxChange = (id) => {
     if (checkedCards.includes(id)) {
       setCheckedCards(checkedCards.filter((cardId) => cardId !== id));
@@ -35,6 +39,7 @@ function App() {
     }
   };
 
+  // Handles the delete button click event to remove selected news cards
   const handleDeleteClick = () => {
     const filteredData = mockData.filter((news) => !checkedCards.includes(news.id));
     mockData.length = 0;
