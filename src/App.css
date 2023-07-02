@@ -1,3 +1,49 @@
 .App {
   padding: 20px;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.actions-left {
+  display: flex;
+  align-items: center;
+}
+
+.actions-right {
+  margin-left: auto;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.actions .publish {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.actions .delete {
+  background-color: #dc3545;
+  color: #fff;
+}
