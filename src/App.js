@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGripVertical, faEye, faCalendar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGripVertical, faEye, faCalendar, faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 import mockData from './MOCK_DATA.json';
 
 function truncateText(text, maxLength) {
@@ -109,6 +109,26 @@ function App() {
           </div>
         ))}
       </div>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>{selectedNews.title}</h3>
+              <button className="modal-close" onClick={() => setShowModal(false)}>
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <div className="modal-author-date">
+              {selectedNews.author} | {selectedNews.date}
+            </div>
+            <p>{selectedNews.content}</p>
+            <div className="modal-footer">
+              <button className="publish">Publish</button>
+              <button className="delete">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
